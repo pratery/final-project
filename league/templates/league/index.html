@@ -1,0 +1,17 @@
+{% extends "league/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    {% if user.is_authenticated %}
+      <h1 class="display-3">Welcome, {{ user.username }}!</h1>
+
+      <p class="lead">Your custom League is ready and waiting for you to get back to managing!</p>
+    {% else %}
+      <h1 class="display-3">League</h1>
+
+      <p class="lead">Build your own sports league by creating conferences, teams, and even players. Create an account or login to start building!</p>
+
+      <a href="{% url 'users:register' %}" class="btn btn-lg btn-primary">Register &raquo;</a>
+    {% endif %}
+  </div>
+{% endblock page_header %}

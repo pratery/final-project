@@ -1,0 +1,16 @@
+{% extends "league/base.html" %}
+
+{% block page_header %}
+  <h3>Player: {{ player.name }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <p><strong>Name:</strong> {{ player.name }}</p>
+  <p><strong>Team:</strong> {{ player.team }}</p>
+
+<form action="{% url 'league:delete_player' player.id %}" method="post">
+  {% csrf_token %}
+  <a href="{% url 'league:edit_player' player.id %}" class="btn btn-primary">Edit</a>
+  <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+{% endblock content %}

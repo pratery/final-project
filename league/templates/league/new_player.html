@@ -1,0 +1,15 @@
+{% extends "league/base.html" %}
+
+{% block page_header %}
+  <h3>Team: {{ team.name }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <p>Add a new player:</p>
+
+  <form action="{% url 'league:new_player' team.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit" class="btn btn-primary">Add player</button>
+  </form>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "league/base.html" %}
+
+{% block page_header %}
+  <h3>Conference: {{ conference.name }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <h5>Teams</h5>
+
+  <p>
+    <a href="{% url 'league:new_team' conference.id %}">Add a new team</a>
+  </p>
+
+  {% for team in teams %}
+    <div class="card mb-3">
+      <h5 class="card-header" style="text-align:center;">
+        <a href="{% url 'league:team' team.id %}">{{ team.name }}</a>
+      </h5>
+    </div>
+  {% empty %}
+    <p>There are no teams in this conference yet.</p>
+  {% endfor %}
+
+  <form action="{% url 'league:delete_conference' conference.id %}" method="post">
+    {% csrf_token %}
+    <a href="{% url 'league:edit_conference' conference.id %}" class="btn btn-primary">Edit</a>
+    <input type="submit" value="Delete" class="btn btn-danger">
+  </form>
+{% endblock content %}

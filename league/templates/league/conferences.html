@@ -1,0 +1,21 @@
+{% extends "league/base.html" %}
+
+{% block page_header %}
+  <h3>Conferences</h3>
+{% endblock page_header %}
+
+{% block content %}
+<p>
+  <a href="{% url 'league:new_conference' %}">Add a new conference</a>
+</p>
+
+  {% for conference in conferences %}
+    <div class="card mb-3">
+      <h5 class="card-header" style="text-align:center;">
+        <a href="{% url 'league:conference' conference.id %}">{{ conference.name }}</a>
+      </h5>
+    </div>
+  {% empty %}
+    <p>No conferences have been added yet.</p>
+  {% endfor %}
+{% endblock content %}
